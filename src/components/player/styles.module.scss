@@ -1,0 +1,133 @@
+@use "styles/vars";
+
+.player {
+  display: grid;
+  background-color: orange;
+  width: 100%;
+  height: 100%;
+  // grid-column: 0 0;
+  // grid-row: 0 1;
+}
+
+.head {
+  background-color: peachpuff;
+  border-radius: 100%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: -100%;
+
+  .leftEye {
+    height: 40%;
+    border-radius: 100%;
+    aspect-ratio: 1;
+    background-color: blue;
+    position: absolute;
+    left: 5%;
+    top: 20%;
+  }
+
+  .rightEye {
+    height: 40%;
+    border-radius: 100%;
+    aspect-ratio: 1;
+    background-color: blue;
+    position: absolute;
+    right: 5%;
+    top: 20%;
+  }
+}
+
+.weapon {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: -50%;
+  left: 25%;
+  background-color: red;
+}
+
+.leftArm {
+}
+
+.rightArm {
+  position: absolute;
+  width: 75%;
+  height: 25%;
+  right: -75%;
+  background-color: orange;
+}
+
+.leftArm {
+  position: absolute;
+  width: 175%;
+  height: 25%;
+  left: -75%;
+  background-color: orange;
+}
+
+.legs {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  bottom: -100%;
+  flex-direction: row;
+
+  .leftLeg {
+    background-color: blue;
+    width: 40%;
+    height: 100%;
+  }
+
+  .rightLeg {
+    background-color: blue;
+    width: 40%;
+    height: 100%;
+    margin-left: auto;
+  }
+}
+
+.up {
+  @extend .weapon
+    // position: absolute;
+    // width: 50%;
+    // height: 100%;
+    // top: -50%;
+    // left: 25%;
+    // background-color: red;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+}
+
+.down {
+  @extend .weapon;
+
+  // position: absolute;
+  // width: 50%;
+  // height: 100%;
+  // bottom: -50%;
+  // left: 25%;
+  // background-color: red
+  rotate: 90deg;
+}
+
+.left {
+  @extend .weapon;
+
+  // width: 100%;
+  // height: 50%;
+  // left: -50%;
+  // top: 25%;
+  // background-color: red;
+  rotate: -90deg;
+}
+
+.right {
+  @extend .weapon;
+
+  // position: absolute;
+  // width: 100%;
+  // height: 50%;
+  // right: -50%;
+  // top: 25%;
+  // background-color: red;;;
+  rotate: 45deg;
+}
