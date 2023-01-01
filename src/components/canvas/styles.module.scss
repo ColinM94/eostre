@@ -2,10 +2,11 @@
 
 .container {
   flex: 1;
-  background-color: green;
+  background-color: black;
   aspect-ratio: 1;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(20, 1fr);
+  height: 100%;
 }

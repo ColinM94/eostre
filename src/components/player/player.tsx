@@ -7,7 +7,7 @@ import styles from "./styles.module.scss"
 type PlayerState = {
   x: number
   y: number
-  direction: "up" | "down" | "left" | "right"
+  direction: number
 }
 
 interface Props {
@@ -19,7 +19,7 @@ export const Player = ({ style, className }: Props) => {
   const [player, setPlayer] = React.useState<PlayerState>({
     x: 5,
     y: 5,
-    direction: "right",
+    direction: 0,
   })
 
   const handleMove = (direction: "up" | "down" | "left" | "right") => {
@@ -30,45 +30,46 @@ export const Player = ({ style, className }: Props) => {
         return {
           x: prev.x,
           y: result >= 0 ? result : 0,
-          direction: "up",
+          direction: prev.direction,
         }
       } else if (direction === "down") {
         const result = prev.y + 1
         return {
           x: prev.x,
           y: result >= 0 ? result : 0,
-          direction: "down",
+          direction: prev.direction,
         }
       } else if (direction === "left") {
         const result = prev.x - 1
         return {
-          x: result >= 0 ? result : 0,
-          y: prev.y,
-          direction: "left",
+          ...prev,
+          // x: result >= 0 ? result : 0,
+          // y: prev.y,
+          direction: prev.direction - 1,
         }
       } else if (direction === "right") {
         const result = prev.x + 1
         return {
-          x: result >= 0 ? result : 0,
-          y: prev.y,
-          direction: "right",
+          ...prev,
+          // x: result >= 0 ? result : 0,
+          // y: prev.y,
+          direction: prev.direction + 1,
         }
       }
 
       return {
         x: 0,
         y: 0,
-        direction: "up",
+        direction: 0,
       }
     })
   }
 
+  console.log(player)
+
   React.useEffect(() => {
     const handleKeyClick = (event: KeyboardEvent) => {
       switch (event.key) {
-        case "w":
-          handleMove("up")
-          return
         case "ArrowUp":
         case "w":
           handleMove("up")
@@ -100,22 +101,19 @@ export const Player = ({ style, className }: Props) => {
       style={{
         gridColumn: player.x,
         gridRow: player.y,
+        rotate: `${player.direction}deg`,
       }}
-      className={classes(styles.player)}
+      className={styles.player}
     >
-      <div className={styles.weapon} />
-      <div className={styles.head}>
-        <div className={styles.leftEye} />
-        <div className={styles.rightEye} />
-        <div className={styles.mouth} />
+      <div className={styles.hull} />
+      <div className={styles.leftNacelle} />
+      <div className={styles.rightNacelle} />
+      <div className={styles.cockpit}>
+        <div className={styles.cockpitLeft} />
+        <div className={styles.cockpitRight} />
       </div>
-
-      <div className={styles.leftArm} />
-      <div className={styles.rightArm} />
-      <div className={styles.legs}>
-        <div className={styles.leftLeg} />
-        <div className={styles.rightLeg} />
-      </div>
+      {/* <div className={styles.leftWeapon} />
+      <div className={styles.rightWeapon} /> */}
     </div>
   )
 }
